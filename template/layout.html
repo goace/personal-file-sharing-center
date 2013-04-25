@@ -176,10 +176,10 @@ $code:
                     </thead>
                     <tbody id="dir_table" >
                         $for item in list:
-                        <tr><td><img src="$icon[item['type']]" style="width: 40px"></img><a href="/download/$item["encode"]">$item["name"]</td>
+                        <tr><td><img src="$icon[item['type']]" style="width: 40px"></img><a href="/upload/$item["encode"]">$item["name"]</td>
                             <td>$item["size"]</td>
                             <td>$item["time"]</td>
-                            <td></td></tr>
+                            <td><a title="Delete" name="$item["name"]" onclick="delete_file(this)" href="#"><img src="/static/img/bin.png" ></img></a></td></tr>
                     </tbody>
                 </table>
             </div>

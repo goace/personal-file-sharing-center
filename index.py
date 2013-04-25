@@ -20,13 +20,16 @@ types = [".h",".cpp",".cxx",".cc",".c",".cs",".html",".js",
         ".zip",".tar",".gz",".7z",".rar",".pdf",".txt",".exe",
 	".apk"]
 render = web.template.render('template')
-root = "/root/upload/"
+root = "/home/upload/"
 
 urls = (
     '/','Index',
     '/download/(.*)',"Download",
+    '/delete/(.*)','Delete',
     '/favicon.ico',"Ico"
 )
+
+class Delete
 
 class Ico:
     def GET(self):
@@ -88,13 +91,15 @@ class Download:
         web.header('Content-Type','application/octet-stream')
         web.header('Content-disposition', 'attachment; filename=%s' % path)
         file = open(os.path.join(root,path))
+        size = os.path.getsize(os.path.join(root,path))
+        web.header('Content-Length','%s' % size)
         return file.read()
 
-if __name__ == "__main__":
-    app = web.application(urls, globals())
-    app.run()
+#if __name__ == "__main__":
+#    app = web.application(urls, globals())
+#    app.run()
 
 
-#app = web.application(urls,globals())
-#application = app.wsgifunc()
+app = web.application(urls,globals())
+application = app.wsgifunc()
     
