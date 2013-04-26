@@ -28,3 +28,6 @@ If you have no idea how to set nginx and uwsgi, the following may help...
 4. Quick start uwsgi: `uwsgi -w index -s :9999` (choose whatever port you like, but must match the setting in upload.conf)
 5. or you can [start uwsgi via upstart](http://uwsgi-docs.readthedocs.org/en/latest/Upstart.html). More about [start uwsgi app.](http://uwsgi-docs.readthedocs.org/en/latest/WSGIquickstart.html)
 
+## Future Work
+* Multiple file upload.
+* User authentication.
