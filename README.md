@@ -4,9 +4,8 @@ It's a simple web APP for shareing files with others. It is inspired
 by [SimpleHTTPServer](http://docs.python.org/2/library/simplehttpserver.html) in Python.
 
 ## Features
-* Cool UI
+* It's COOL!
 * HTML5 Drag & Drop
-* Uploading Progress Bar
 * One Command Start
 
 ## Usage
@@ -28,3 +27,9 @@ If you have no idea how to set nginx and uwsgi, the following may help...
 4. Quick start uwsgi: `uwsgi -w index -s :9999` (choose whatever port you like, but must match the setting in upload.conf)
 5. or you can [start uwsgi via upstart](http://uwsgi-docs.readthedocs.org/en/latest/Upstart.html). More about [start uwsgi app.](http://uwsgi-docs.readthedocs.org/en/latest/WSGIquickstart.html)
 
+## Future Work
+* Multiple file upload.
+* User authentication.
+
+## Screenshot
+<img src="http://www.orzace.com/wp-content/uploads/2013/04/28J785ZZQ_LQ17_J.jpg"/>
