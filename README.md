@@ -30,3 +30,6 @@ If you have no idea how to set nginx and uwsgi, the following may help...
 ## Future Work
 * Multiple file upload.
 * User authentication.
+
+## Screenshot
+<img src="http://www.orzace.com/wp-content/uploads/2013/04/28J785ZZQ_LQ17_J.jpg"/>
