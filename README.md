@@ -4,9 +4,8 @@ It's a simple web APP for shareing files with others. It is inspired
 by [SimpleHTTPServer](http://docs.python.org/2/library/simplehttpserver.html) in Python.
 
 ## Features
-* Cool UI
+* It's COOL!
 * HTML5 Drag & Drop
-* Uploading Progress Bar
 * One Command Start
 
 ## Usage
