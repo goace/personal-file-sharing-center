@@ -1,17 +1,12 @@
 #!/usr/bin/env python
-
 import web
 import os
 import time
+import config
 from urllib import quote
-import json
-import ConfigParser
 
-# load conf file
-#cf = ConfigParser.ConfigParser()
-#cf.read("conf/server.conf")
-#RESOLUTION = eval(cf.get("sec_a","resolution"))
-#PREFIX = cf.get("sec_a","url_prefix")
+# load config file
+root = config.root
 
 types = [
     ".h",".cpp",".cxx",".cc",".c",".cs",".html",".js",
@@ -23,12 +18,10 @@ types = [
 ]
 
 render = web.template.render('template')
-root = "/home/upload/"
 
 urls = (
+    '/favicon.ico',"Ico",
     '/(.*)','Index',
-    '/download/(.*)',"Download",
-    '/favicon.ico',"Ico"
 )
 
 class Ico:
@@ -103,20 +96,14 @@ class Index:
             
         return "<script>parent.location.reload()</script>" 
 
-#class Download:
-    #def GET(self,path):
-        #web.header('Content-Type','application/octet-stream')
-        #web.header('Content-disposition', 'attachment; filename=%s' % path)
-        #file = open(os.path.join(root,path))
-        #size = os.path.getsize(os.path.join(root,path))
-        #web.header('Content-Length','%s' % size)
-        #return file.read()
-
 #if __name__ == "__main__":
 #    app = web.application(urls, globals())
 #    app.run()
 
-
+# to work with uwsgi, uncomment the follwing two lines
 app = web.application(urls,globals())
 application = app.wsgifunc()
+
+if __name__ == "__main__":
+    app.run()
     
