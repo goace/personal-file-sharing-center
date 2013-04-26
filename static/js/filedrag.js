@@ -2,6 +2,7 @@
 filedrag.js - HTML5 File Drag & Drop demonstration
 Featured on SitePoint.com
 Developed by Craig Buckler (@craigbuckler) of OptimalWorks.net
+and Modified by Ace(i.orzace.com)
 */
 (function() {
 
@@ -12,10 +13,10 @@ Developed by Craig Buckler (@craigbuckler) of OptimalWorks.net
 
 
 	// output information
-	function Output(msg) {
-		var m = $id("messages");
-		m.innerHTML = msg + m.innerHTML;
-	}
+	//function Output(msg) {
+		//var m = $id("messages");
+		//m.innerHTML = msg + m.innerHTML;
+	//}
 
 
 	// file drag hover
@@ -25,17 +26,18 @@ Developed by Craig Buckler (@craigbuckler) of OptimalWorks.net
 		e.target.className = (e.type == "dragover" ? "hover" : "");
 	}
 
+    // update the progress bar
  	function uploadProgress(evt) {
-            if (evt.lengthComputable) {
-                var uploaded = Math.round(evt.loaded * 100 / evt.total);
-		$("#upload_progress").show();
-		$("#upload_progress_bar").attr("style","width:" + uploaded + "%;")
-                //document.getElementById('progressNumber').innerHTML = percentComplete.toString() + '%';
-            }
-            else {
-                //document.getElementById('progressNumber').innerHTML = 'unable to compute';
-            }
+        if (evt.lengthComputable) {
+            var uploaded = Math.round(evt.loaded * 100 / evt.total);
+            $("#upload_progress").show();
+            $("#upload_progress_bar").attr("style","width:" + uploaded + "%;")
+            //document.getElementById('progressNumber').innerHTML = percentComplete.toString() + '%';
         }
+        else {
+            //document.getElementById('progressNumber').innerHTML = 'unable to compute';
+        }
+    }
 
 	// file selection
 	function FileSelectHandler(e) {
@@ -45,33 +47,31 @@ Developed by Craig Buckler (@craigbuckler) of OptimalWorks.net
 
 		// fetch FileList object
 		var files = e.target.files || e.dataTransfer.files;
+        
+        // init the ajax request
+        var xhr = new XMLHttpRequest();  
+        xhr.open('post', '/', true);  
+        xhr.upload.addEventListener("load", function(e){window.location.reload()},false);
+        xhr.upload.addEventListener("progress", uploadProgress, false);
+
+        var formData = new FormData();
 
 		// process all File objects
 		for (var i = 0, f; f = files[i]; i++) {
-            var xhr = new XMLHttpRequest();  
-            xhr.open('post', '/', true);  
-            xhr.upload.addEventListener("load", function(e){window.location.reload()},false);
-	    xhr.upload.addEventListener("progress", uploadProgress, false);
-            //xhr.setRequestHeader("Content-Type", "multipart/form-data, boundary=" + boundary);
-            //xhr.setRequestHeader("X_FILENAME", f.name);
-            //xhr.setRequestHeader("Content-Length", f.size);
-
-            var formData = new FormData();
-            formData.append('file', f);
+            var entry = e.dataTransfer.items[i].webkitGetAsEntry();
+            if(entry.isFile)
+                formData.append('file', f);
+            else
+            {
+                alert("不支持上传文件夹");
+                return;
+            }
             
-            //var body = '';  
-            //body += "--" + boundary + "\r\n";  
-            //body += 'Content-Disposition: form-data;  filename=\"' + f.name + "\"\r\n";  
-            //body += "Content-Type: " + f.type + "\r\n\r\n";  
-            //body += f.data + "\r\n";  
-            //body += "--" + boundary + "--\r\n";  
-            
-            xhr.send(formData);
-            //xhr.sendAsBinary(body); 
 		}
+        
+        xhr.send(formData);
 
 	}
-
 
 	// initialize
 	function Init() {
@@ -104,3 +104,20 @@ Developed by Craig Buckler (@craigbuckler) of OptimalWorks.net
 
 
 })();
+
+function delete_file(obj)
+{
+    var name = obj.name;
+    if(confirm("Really want delete " + name + "?"))
+    {
+        $.ajax({
+            url: '/' + name,
+            type: 'DELETE',
+            success: function(data){
+                window.location.reload();
+            }
+        });
+    }
+    else
+        return;
+}
