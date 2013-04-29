@@ -3,3 +3,4 @@ import os
 root = os.path.join(os.getcwd(), "upload/")
 if not os.path.isdir(root):
     os.makedirs(root)
+no_delete = False

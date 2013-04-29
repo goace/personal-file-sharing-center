@@ -1,4 +1,4 @@
-$def with (list)
+$def with (list, no_delete)
 
 $code:
     icon = {
@@ -168,7 +168,8 @@ $code:
                             <td><font color="white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name</font></td>
                             <td width="80"><font color="white">Size</font></td>
                             <td width="150"><font color="white">Time</font></td>
-                            <td width="45"><font color="white">More</font></td>
+                            $if not no_delete:
+                                <td width="45"><font color="white">More</font></td>
                         </tr>
                     </thead>
                     <tbody id="dir_table" >
@@ -176,7 +177,8 @@ $code:
                         <tr><td><img src="$icon[item['type']]" style="width: 40px"></img><a href="/$item["encode"]">$item["name"]</td>
                             <td>$item["size"]</td>
                             <td>$item["time"]</td>
-                            <td><a title="Delete" name="$item["name"]" onclick="delete_file(this)" href="#"><img src="/static/img/bin.png" ></img></a></td></tr>
+                            $if not no_delete:
+                                <td><a title="Delete" name="$item["name"]" onclick="delete_file(this)" href="#"><img src="/static/img/bin.png" ></img></a></td></tr>
                     </tbody>
                 </table>
             </div>

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import sys
 import web
 import os
 import time
@@ -65,8 +66,8 @@ class Index:
                 temp["encode"] = quote(i)
 
                 list.append(temp)
-            
-            return render.layout(list) 
+
+            return render.layout(list, config.no_delete)
         
         else:
             web.header('Content-Type','application/octet-stream')
@@ -75,8 +76,10 @@ class Index:
             size = os.path.getsize(os.path.join(root,path))
             web.header('Content-Length','%s' % size)
             return file.read()
-            
+
     def DELETE(self,filename):
+        if config.no_delete:
+            return
         try:
             os.remove(os.path.join(root,filename))
         except:
@@ -105,5 +108,8 @@ app = web.application(urls,globals())
 application = app.wsgifunc()
 
 if __name__ == "__main__":
+    for key in ('-nd', '--no-delete'):
+        if key in sys.argv:
+            sys.argv.remove(key)
+            config.no_delete = True
     app.run()
-    
