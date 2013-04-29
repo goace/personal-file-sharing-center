@@ -1,2 +1,5 @@
 # the directory you want to share
-root = "/home/upload/"
+import os
+root = os.path.join(os.getcwd(), "upload/")
+if not os.path.isdir(root):
+    os.makedirs(root)
