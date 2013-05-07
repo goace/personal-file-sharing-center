@@ -1,4 +1,4 @@
-# Your Personal File Sharing Center
+# Iron Man - a Personal File Sharing Center
 
 It's a simple web APP for shareing files with others. It is inspired 
 by [SimpleHTTPServer](http://docs.python.org/2/library/simplehttpserver.html) in Python.
