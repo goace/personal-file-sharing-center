@@ -33,3 +33,6 @@ If you have no idea how to set nginx and uwsgi, the following may help...
 
 ## Screenshot
 <img src="http://www.orzace.com/wp-content/uploads/2013/04/28J785ZZQ_LQ17_J.jpg"/>
+
+## License
+Iron Man is available under the GPLv2. See the LICENSE file for more info.
