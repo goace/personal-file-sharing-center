@@ -67,57 +67,54 @@ $code:
     <head>
         <title>Ace's Upload Center</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link rel=icon" href="/static/img/favicon.ico" type="image/x-icon" >
-        <!--<link href="/static/css/general.css" rel="stylesheet" type="text/css" media="screen">-->
+        <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" >
         <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <!--<link href="/static/css/tipsy.css" rel="stylesheet">-->
         <style type="text/css">
-        body {
-            padding-top: 60px;
-            padding-bottom: 40px;
-        }
-        .sidebar-nav {
-            padding: 9px 0;
-        }
-        .footer {
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 70px;
-            border-top: 1px solid #e5e5e5;
-            background-color: #f5f5f5;
-        }
-        .input
-        {
-            font: 12px Arial, Helvetica, sans-serif;
-            border: 1px solid #86888B;
-        }
-        #filedrag
-        {
-            display: none;
-            font-weight: bold;
-            text-align: center;
-            padding: 1em 0;
-            margin: 1em 0;
-            color: #555;
-            border: 2px dashed #555;
-            border-radius: 7px;
-            cursor: default;
-        }
-        #filedrag.hover
-        {
-            color: #71C671;
-            border-color: #71C671;
-            border-style: solid;
-            box-shadow: inset 0 3px 4px #888;
-        }
-        table{table-layout: fixed;}
-        td{word-break: break-all; word-wrap:break-word;}
-        footer{display:block;}
+            body {
+                padding-top: 60px;
+                padding-bottom: 40px;
+            }
+            .sidebar-nav {
+                padding: 9px 0;
+            }
+            .footer {
+                text-align: center;
+                padding: 30px 0;
+                margin-top: 70px;
+                border-top: 1px solid #e5e5e5;
+                background-color: #f5f5f5;
+            }
+            .input
+            {
+                font: 12px Arial, Helvetica, sans-serif;
+                border: 1px solid #86888B;
+            }
+            #filedrag
+            {
+                display: none;
+                font-weight: bold;
+                text-align: center;
+                padding: 1em 0;
+                margin: 1em 0;
+                color: #555;
+                border: 2px dashed #555;
+                border-radius: 7px;
+                cursor: default;
+            }
+            #filedrag.hover
+            {
+                color: #71C671;
+                border-color: #71C671;
+                border-style: solid;
+                box-shadow: inset 0 3px 4px #888;
+            }
+            table{table-layout: fixed;}
+            td{word-break: break-all; word-wrap:break-word;}
+            footer{display:block;}
         </style>
         <script type="text/javascript" src="/static/js/jquery.js"></script>
         <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/static/js/bootstrap.file-input.js"></script>
- 
     </head>
     <body style="font-family:Microsoft YaHei;">
 
@@ -126,15 +123,10 @@ $code:
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" rel="tipsy" href="/" title="欢迎使用MeePo-X" ><img src="/static/img/logo.png" style="width: 25px"></img>&nbsp;&nbsp;Welcome to My Upload Center!</a>
-                    <!--<ul class="nav pull-right">-->
-                        <!--<li class="divider-vertical"></li>-->
-                        <!--<li rel="tipsy" title="我的信息"><a href="/account"><i class="icon-user"></i></a></li>-->
-                        <!--<li rel="tipsy" title="注销" id="logout_button"><a href="#"><i class="icon-off"></i></a></li>-->
-                    <!--</ul>-->
-                    <form class="navbar-search pull-right" data-bind="submit: search.addDish">
-                        <input id="search-dish" type="text" class="search-query" data-provide="typeahead" data-bind="搜索文件" rel="tooltip" data-placement="left" data-trigger="manual" data-original-title="再次回车加入订单" placeholder="Search">
-                    </form>
+                    <a class="brand" rel="tipsy" href="/"  ><img src="/static/img/logo.png" style="width: 25px"></img>&nbsp;&nbsp;Welcome to My Upload Center!</a>
+                    <!--<form class="navbar-search pull-right" data-bind="submit: search.addDish">-->
+                        <!--<input id="search-dish" type="text" class="search-query" data-provide="typeahead" data-bind="搜索文件" rel="tooltip" data-placement="left" data-trigger="manual" data-original-title="再次回车加入订单" placeholder="Search">-->
+                    <!--</form>-->
                 </div>
             </div>
         </div>
@@ -143,17 +135,10 @@ $code:
         <!--文件列表-->
         <div class="container">
             <div class="row-fluid">
-                 <!--<form encType="multipart/form-data"  method="post" action="" target="ifm">-->
-                     <!--<input type="file" title="选择要上传的文件"  class="btn btn-primary" id="file_upload_field" name="file" onchange="this.form.submit();"></input>-->
-                    <!--[><div id="upload_progress" class="progress progress-striped active" style="display:none"><]-->
-                    <!--[><div id="upload_progress_bar" class="bar"></div><]-->
-                <!--</form>-->
                 <form id="upload" action="/" method="POST" enctype="multipart/form-data" target="ifm">
                     <fieldset>
                         <legend>File Upload:</legend>
-                        <!--<input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000" />-->
                         <div>
-                                <!--<label for="fileselect">Files to upload:</label>-->
                             <input type="file" id="fileselect" name="file" / title="choose a file" onchange="this.form.submit();">
                             <div id="filedrag">or drop the file here</div>
                         </div>

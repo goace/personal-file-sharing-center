@@ -30,6 +30,7 @@ class Ico:
 
 class Index:
     def GET(self,path):
+        # list all the files
         if path == '':
             list = []
             item = os.listdir(root)
@@ -39,7 +40,7 @@ class Index:
                 if i[0] == '.' or os.path.isdir(root + i):
                     continue
                 temp = {}
-                temp['name'] = unicode(i, "gbk")
+                temp['name'] = i 
                 temp['type'] = '.' + i.split('.')[-1]
                 
                 try:
@@ -68,6 +69,7 @@ class Index:
             
             return render.layout(list) 
         
+        # return a file
         else:
             web.header('Content-Type','application/octet-stream')
             web.header('Content-disposition', 'attachment; filename=%s' % path)
@@ -78,30 +80,29 @@ class Index:
             
     def DELETE(self,filename):
         try:
+            filename = filename.encode('utf-8') 
             os.remove(os.path.join(root,filename))
         except:
             return "success" 
 
 
     def POST(self,filename):
+
+        # save a file to disk
         x = web.input(file={})
-        #print x
         
         if 'file' in x:
             filepath= x.file.filename.replace('\\','/')     # replaces the windows-style slashes with linux ones.
             filename = filepath.split('/')[-1]              # splits the and chooses the last part (the filename with extension)
             filename = unicode(filename, "utf8")
-			fout = open(os.path.join(root,filename),'w')    # creates the file where the uploaded file should be stored
+            fout = open(os.path.join(root,filename),'w')    # creates the file where the uploaded file should be stored
             fout.write(x.file.file.read())                  # writes the uploaded file to the newly created file.
             fout.close()                                    # closes the file, upload complete.
             
         return "<script>parent.location.reload()</script>" 
 
-#if __name__ == "__main__":
-#    app = web.application(urls, globals())
-#    app.run()
-
-# to work with uwsgi, uncomment the follwing two lines
+# start the application
+# it's adaptable to both uwsgi start & python start
 app = web.application(urls,globals())
 application = app.wsgifunc()
 
