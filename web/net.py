@@ -29,14 +29,12 @@ def validip6addr(address):
         >>> validip6addr('12:10')
         False
     """
-	"""
     try:
         socket.inet_pton(socket.AF_INET6, address)
-    except socket.error:
+    except:
         return False
-	"""
 
-    return False
+    return True
 
 def validipaddr(address):
     """
