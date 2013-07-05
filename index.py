@@ -39,7 +39,7 @@ class Index:
                 if i[0] == '.' or os.path.isdir(root + i):
                     continue
                 temp = {}
-                temp['name'] = i
+                temp['name'] = unicode(i, "gbk")
                 temp['type'] = '.' + i.split('.')[-1]
                 
                 try:
@@ -90,7 +90,8 @@ class Index:
         if 'file' in x:
             filepath= x.file.filename.replace('\\','/')     # replaces the windows-style slashes with linux ones.
             filename = filepath.split('/')[-1]              # splits the and chooses the last part (the filename with extension)
-            fout = open(os.path.join(root,filename),'w')    # creates the file where the uploaded file should be stored
+            filename = unicode(filename, "utf8")
+			fout = open(os.path.join(root,filename),'w')    # creates the file where the uploaded file should be stored
             fout.write(x.file.file.read())                  # writes the uploaded file to the newly created file.
             fout.close()                                    # closes the file, upload complete.
             
