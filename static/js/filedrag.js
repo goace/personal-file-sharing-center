@@ -50,7 +50,7 @@ and Modified by Ace(i.orzace.com)
         
         // init the ajax request
         var xhr = new XMLHttpRequest();  
-        xhr.open('post', '/', true);  
+        xhr.open('post', document.location.pathname, true);  
         xhr.upload.addEventListener("load", function(e){window.location.reload()},false);
         xhr.upload.addEventListener("progress", uploadProgress, false);
 
@@ -111,7 +111,7 @@ function delete_file(obj)
     if(confirm("Delete " + name + ", are you sure?"))
     {
         $.ajax({
-            url: '/' + name,
+            url: document.location.pathname + name,
             type: 'DELETE',
             success: function(data){
                 window.location.reload();

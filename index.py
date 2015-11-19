@@ -37,7 +37,7 @@ class Index:
             item = sorted(item, key = str.lower)
             
             for i in item:
-                if i[0] == '.' or os.path.isdir(root + i):
+                if i[0] == '.' or os.path.isdir(os.path.join(root, i)):
                     continue
                 temp = {}
                 temp['name'] = i 
@@ -50,9 +50,9 @@ class Index:
 
 
                 temp["time"] = time.strftime("%H:%M:%S %Y-%m-%d",
-                        time.localtime(os.path.getmtime(root + i))) 
+                        time.localtime(os.path.getmtime(os.path.join(root, i))))
                 
-                size = os.path.getsize(os.path.join(root,i))
+                size = os.path.getsize(os.path.join(root, i))
                 if size < 1024:
                     size = str(size) + ".0 B"
                 elif size < 1024 * 1024:
